@@ -5,7 +5,7 @@ LABEL version="latest"
 RUN adduser -s /bin/sh -D git
 
 RUN set -e && \
-  apk add --no-cache openssh git nodejs 
+  apk add --no-cache openssh git nodejs curl
 
 COPY rootfs /
 RUN set -e && \
