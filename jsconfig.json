@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "strictNullChecks": false,
+    "lib": [
+      "esnext","scripthost"
+    ]
+  }
+}

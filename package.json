@@ -1,0 +1,41 @@
+{
+  "name": "@shynome/alpine-drone-ci",
+  "version": "0.0.0",
+  "description": "alpine drone ci deploy tools",
+  "main": "lib/index.js",
+  "bin": {
+    "deploy": "lib/deploy"
+  },
+  "files": [
+    "lib"
+  ],
+  "config": {
+    "docker_name": "shynome/alpine-drone-ci"
+  },
+  "scripts": {
+    "test": "echo $npm_package_config_docker_name",
+    "predocker": "docker build . -t $npm_package_config_docker_name:rc",
+    "docker": "docker run --rm -ti $npm_package_config_docker_name:rc sh",
+    "preversion": "npm t",
+    "postversion": "git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shynome/alpine-drone-ci.git"
+  },
+  "keywords": [],
+  "author": "shynome",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shynome/alpine-drone-ci/issues"
+  },
+  "homepage": "https://github.com/shynome/alpine-drone-ci#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "shelljs": "^0.8.2",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.3.0"
+  }
+}
