@@ -1,3 +1,9 @@
+# 测试安装
+
+```sh
+npm i -g https://github.com/shynome/alpine-drone-ci.git#dev
+```
+
 # Useage Case
 
 ### git 差异部署
