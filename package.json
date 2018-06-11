@@ -13,7 +13,7 @@
     "docker_name": "shynome/alpine-drone-ci"
   },
   "scripts": {
-    "test": "echo $npm_package_config_docker_name",
+    "test": "exit 0",
     "predocker": "docker build . -t $npm_package_config_docker_name:rc",
     "docker": "docker run --rm -ti $npm_package_config_docker_name:rc sh",
     "preversion": "npm t",
