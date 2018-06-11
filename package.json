@@ -39,5 +39,8 @@
     "@types/node": "^10.3.0",
     "@types/shelljs": "^0.8.0",
     "@types/yargs": "^11.0.0"
+  },
+  "engines": {
+    "node": "^8.11.2"
   }
 }
