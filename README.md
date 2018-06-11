@@ -1,10 +1,34 @@
-# build
-- get remote host commit (need environment: `host`, `deploy_dir`)
-- pack diff `remote_commit` and `DRONE_COMMIT` to `deploy_pack.tgz`
+# 测试安装
 
+```sh
+npm i -g https://github.com/shynome/alpine-drone-ci.git#dev
+```
 
-# deploy
-- scp `deploy_pack.tgz` to host `/tmp_file`
+# Useage Case
 
-# set remote tag
-- set remote host commit 
+### git 差异部署
+
+```yaml
+pipeline:
+  build:
+    image: shynome/alpine-drone-ci
+    volume:
+      - ssh:/root/.ssh
+    environment:
+      host: deploy_host
+      deploy_dir: /deploy_dir 
+    commands:
+      - deploy build git|node
+```
+
+### deploy
+```yaml
+pipeline:
+  deploy_to_host1:
+    image: shynome/alpine-drone-ci
+    volume:
+      - ssh:/root/.ssh
+    commands:
+      - echo 'deploy_dir=/deploy'>>.env
+      - deploy to host
+```
