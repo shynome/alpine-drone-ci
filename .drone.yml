@@ -1,0 +1,23 @@
+event: tag
+
+pipeline:
+
+  test:
+    image: alpine
+    commands:
+    - echo 666
+
+  npm_publish:
+    when:
+      branch: [x]
+    image: plugins/npm
+    secrets: [ npm_token ]
+    email: shynome@gmail.com
+    
+  dokcer_publish:
+    when:
+      branch: [x]
+    image: plugins/docker
+    secrets: [ docker_username, docker_password ]
+    repo: shynome/alpine-drone-ci
+    auto_tag: true
