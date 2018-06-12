@@ -1,5 +1,3 @@
-when:
-  event: tag
 
 pipeline:
 
@@ -10,14 +8,14 @@ pipeline:
 
   npm_publish:
     when:
-      branch: [x]
+      event: tag
     image: plugins/npm
     secrets: [ npm_token ]
     email: shynome@gmail.com
     
   dokcer_publish:
     when:
-      branch: [x]
+      event: tag
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
