@@ -1,11 +1,6 @@
 
 pipeline:
 
-  test:
-    image: alpine
-    commands:
-    - echo 666
-
   npm_publish:
     when:
       event: tag
