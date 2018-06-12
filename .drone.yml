@@ -1,4 +1,5 @@
-event: tag
+when:
+  event: tag
 
 pipeline:
 
