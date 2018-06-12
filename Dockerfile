@@ -7,7 +7,8 @@ RUN adduser -s /bin/sh -D git
 RUN set -e && \
   apk add --no-cache openssh git nodejs curl docker
 
+WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-RUN npm i -g @shynome/alpine-drone-ci && rm -rf /app ~/.npm
+RUN npm i -g @shynome/alpine-drone-ci@0.0.2 && rm -rf ~/.npm
 
