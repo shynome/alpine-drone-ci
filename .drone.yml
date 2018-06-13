@@ -5,8 +5,9 @@ pipeline:
     when:
       event: tag
     image: plugins/npm
-    secrets: [ npm_token ]
+    username: shynome
     email: shynome@gmail.com
+    secrets: [ NPM_TOKEN ]
     
   dokcer_publish:
     when:
