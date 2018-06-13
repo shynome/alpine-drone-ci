@@ -8,18 +8,20 @@ npm i -g https://github.com/shynome/alpine-drone-ci.git#dev
 
 ### git 差异部署
 
+#### build
 ```yaml
 pipeline:
   build:
-    image: shynome/alpine-drone-ci
+    image: shynome/alpine-drone-ci:dev
     volume:
       - ssh:/root/.ssh
     environment:
       host: deploy_host
-      deploy_dir: /deploy_dir 
     commands:
-      - deploy build git|node
+      - deploy set deploy_dir /deploy_dir 
+      - deploy build git
 ```
+
 
 ### deploy
 ```yaml
