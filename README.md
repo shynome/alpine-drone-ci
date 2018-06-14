@@ -34,3 +34,11 @@ pipeline:
       - echo 'deploy_dir=/deploy'>>.env
       - deploy to host
 ```
+
+# Api
+
+## `deploy report` 报告构建结果 
+
+```shell
+deploy report --keep-result https://oapi.dingtalk.com/robot/send?access_token=05b51c6d9c772e1170cf2bbd57bf1fe7833bb5816a7b2fb2ea45a1864c74d084
+```
