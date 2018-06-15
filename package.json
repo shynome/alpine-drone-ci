@@ -14,8 +14,8 @@
   },
   "scripts": {
     "test": "exit 0",
-    "predocker": "docker build . -t $npm_package_config_docker_name:rc",
-    "docker": "docker run --rm -ti $npm_package_config_docker_name:rc sh",
+    "predocker": "docker build . -t $npm_package_config_docker_name:dev",
+    "docker": "docker run --rm -ti $npm_package_config_docker_name:dev sh",
     "preversion": "npm t",
     "postversion": "git push --follow-tags"
   },
@@ -31,11 +31,13 @@
   },
   "homepage": "https://github.com/shynome/alpine-drone-ci#readme",
   "dependencies": {
+    "@shynome/dingtalk": "0.0.5",
     "dotenv": "^6.0.0",
     "shelljs": "^0.8.2",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
+    "@types/got": "^8.3.1",
     "@types/node": "^10.3.0",
     "@types/shelljs": "^0.8.0",
     "@types/yargs": "^11.0.0"

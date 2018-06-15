@@ -5,10 +5,12 @@ LABEL version="latest"
 RUN adduser -s /bin/sh -D git
 
 RUN set -e && \
+  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
   apk add --no-cache openssh git nodejs curl docker
 
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-RUN npm i -g @shynome/alpine-drone-ci@0.0.2 && rm -rf ~/.npm
+COPY . /deploy
+RUN npm link /deploy && rm -rf ~/.npm
 
