@@ -6,11 +6,18 @@ RUN adduser -s /bin/sh -D git
 
 RUN set -e && \
   sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+  sed -i 's/http:/https:/g' /etc/apk/repositories && \
   apk add --no-cache openssh git nodejs curl docker
+
+WORKDIR /deploy
+COPY . /deploy
+RUN npm link . && rm -rf ~/.npm
 
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-COPY . /deploy
-RUN npm link /deploy && rm -rf ~/.npm
-
+RUN set -e && \
+  git init . && \
+  git config user.name 'x' && \
+  git config user.email 'x@x.x' && \
+  echo '{}'>package.json && git add -A && git commit -m 'init'

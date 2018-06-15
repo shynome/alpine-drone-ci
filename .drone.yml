@@ -22,5 +22,6 @@ pipeline:
       branch: dev
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
+    dockerfile: dev.Dockerfile
     repo: shynome/alpine-drone-ci
     tags: [ dev ]
