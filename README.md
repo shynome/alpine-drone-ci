@@ -44,7 +44,7 @@ pipeline:
 
 ### usage in drone
 
-you should add `report_hook` secret first
+at first add `report_hook` secret
 ```yml
 pipeline:
   report:
