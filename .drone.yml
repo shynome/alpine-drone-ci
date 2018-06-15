@@ -15,7 +15,7 @@ pipeline:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
-    tags: [ latest, v0.0.3 ]
+    auto_tag: true
   
   dev_docker_publish:
     when:
