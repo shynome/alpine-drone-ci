@@ -39,6 +39,24 @@ pipeline:
 
 ## `deploy report` 报告构建结果 
 
-```shell
-deploy report --keep-result https://oapi.dingtalk.com/robot/send?access_token=05b51c6d9c772e1170cf2bbd57bf1fe7833bb5816a7b2fb2ea45a1864c74d084
+支持的 `web_hook`
+- `dingtalk robot`
+
+### usage in drone
+
+you should add `report_hook` secret first
+```yml
+pipeline:
+  report:
+    image: shynome/alpine-drone-ci:dev
+    secrets: [ report_hook ]
+    commands:
+    - deploy report -a
+```
+
+### command useage
+
+```sh
+# deploy report --always [report_hook_url]
+deploy report -a https://oapi.dingtalk.com/robot/send?access_token=${your_token}
 ```
