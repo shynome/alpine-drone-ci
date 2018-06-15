@@ -24,5 +24,3 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
     tags: [ dev ]
-
-
