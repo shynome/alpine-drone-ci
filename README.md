@@ -1,8 +1,3 @@
-# 测试安装
-
-```sh
-npm i -g https://github.com/shynome/alpine-drone-ci.git#dev
-```
 
 # Useage Case
 
@@ -12,7 +7,7 @@ npm i -g https://github.com/shynome/alpine-drone-ci.git#dev
 ```yaml
 pipeline:
   build:
-    image: shynome/alpine-drone-ci:dev
+    image: shynome/alpine-drone-ci
     volume:
       - ssh:/root/.ssh
     environment:
@@ -48,7 +43,7 @@ at first add `report_hook` secret
 ```yml
 pipeline:
   report:
-    image: shynome/alpine-drone-ci:dev
+    image: shynome/alpine-drone-ci
     secrets: [ report_hook ]
     commands:
     - deploy report -a
