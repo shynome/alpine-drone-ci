@@ -1,0 +1,1 @@
+exports.EmptyGitDir = require('./EmptyGitDir')
