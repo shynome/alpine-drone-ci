@@ -3,7 +3,8 @@ pipeline:
 
   npm_publish:
     when:
-      event: tag
+      event: push
+      branch: master
     image: plugins/npm
     username: shynome
     email: shynome@gmail.com
@@ -11,7 +12,8 @@ pipeline:
     
   dokcer_publish:
     when:
-      event: tag
+      event: push
+      branch: master
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
