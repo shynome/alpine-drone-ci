@@ -6,7 +6,7 @@
 #### build
 ```yaml
 pipeline:
-  build:
+  build_git:
     image: shynome/alpine-drone-ci
     volume:
       - ssh:/root/.ssh
@@ -15,6 +15,17 @@ pipeline:
     commands:
       - deploy set deploy_dir /deploy_dir 
       - deploy build git
+  build_ssh_git:
+    image: shynome/alpine-drone-ci:dev
+    volume:
+      - ssh:/root/.ssh
+    environment:
+      host: core_host
+      git_host: fever-git
+      git_basedir: /data/git/gogs-repositories
+    commands:
+      - deploy set deploy_dir /deploy_dir 
+      - deploy build ssh-git
 pipeline:
   deploy_to_host1:
     image: shynome/alpine-drone-ci
