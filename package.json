@@ -1,6 +1,6 @@
 {
   "name": "@shynome/alpine-drone-ci",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "alpine drone ci deploy tools",
   "main": "lib/index.js",
   "bin": {
