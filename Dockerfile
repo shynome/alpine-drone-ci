@@ -11,4 +11,5 @@ RUN set -e && \
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
+COPY package.json /root/.npm/
 RUN npm i -g @shynome/alpine-drone-ci && rm -rf ~/.npm
