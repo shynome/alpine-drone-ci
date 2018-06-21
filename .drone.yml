@@ -4,7 +4,7 @@ pipeline:
 
   npm_publish:
     when:
-      event: push
+      event: tag
       branch: master
     image: plugins/npm
     username: shynome
@@ -13,12 +13,13 @@ pipeline:
     
   dokcer_publish:
     when:
-      event: push
+      event: tag
       branch: master
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
     auto_tag: true
+    tags: [ latest ]
   
   dev_docker_publish:
     when:
