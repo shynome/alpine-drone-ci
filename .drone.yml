@@ -10,11 +10,12 @@ pipeline:
     email: shynome@gmail.com
     secrets: [ npm_token ]
   
-  check:
-    image: shynome/alpine-drone-ci
+  set_docker_publish_tags:
+    image: node:carbon-alpine
+    when:
+      event: tag
     commands:
-      # - npm run postpublish
-      - cat ./.tags
+      - npm run set_docker_publish_tags
     
   dokcer_publish:
     when:
