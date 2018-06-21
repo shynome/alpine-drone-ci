@@ -17,7 +17,8 @@
     "predocker": "docker build . -f dev.Dockerfile -t $npm_package_config_docker_name:dev",
     "docker": "docker run --rm -ti $npm_package_config_docker_name:dev sh",
     "preversion": "npm t",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "postpublish": "echo \"$npm_package_version,latest\">.tags "
   },
   "repository": {
     "type": "git",

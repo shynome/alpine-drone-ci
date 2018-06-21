@@ -13,11 +13,9 @@ pipeline:
   dokcer_publish:
     when:
       event: tag
-      branch: master
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
-    auto_tag: true
   
   dev_docker_publish:
     when:
