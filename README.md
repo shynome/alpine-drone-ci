@@ -1,6 +1,24 @@
 
 # Useage Case
 
+### docker image deploy
+
+#### 
+```sh
+deploy image [host] [server] [image]
+```
+```yaml
+pipeline:
+  build:
+    image: shynome/alpine-drone-ci
+    volume:
+      - ssh:/root/.ssh
+    environment:
+      image: shynome/nginx-alpine:latest
+    commands:
+      - deploy image test-host m_server
+```
+
 ### git 差异部署
 
 #### build
