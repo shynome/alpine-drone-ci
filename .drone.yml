@@ -2,13 +2,6 @@ branch: [ master, dev ]
 
 pipeline:
 
-  test:
-    image: shynome/alpine-drone-ci
-    commands:
-      - npm run postpublish
-      - cat ./.tags
-      - exit 1
-
   npm_publish:
     when:
       event: tag
@@ -16,6 +9,12 @@ pipeline:
     username: shynome
     email: shynome@gmail.com
     secrets: [ npm_token ]
+  
+  check:
+    image: shynome/alpine-drone-ci
+    commands:
+      # - npm run postpublish
+      - cat ./.tags
     
   dokcer_publish:
     when:
