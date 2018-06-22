@@ -18,8 +18,7 @@
     "docker": "docker run --rm -ti $npm_package_config_docker_name:dev sh",
     "preversion": "npm t",
     "postversion": "git push --follow-tags",
-    "set_docker_publish_tags": "echo \"$npm_package_version,latest\">./.tags",
-    "install_to_global": "npm i -g @shynome/alpine-drone-ci:$npm_package_version && rm /app/package.json"
+    "set_docker_publish_tags": "echo \"$npm_package_version,latest\">.tags && echo $npm_package_version>.version"
   },
   "repository": {
     "type": "git",

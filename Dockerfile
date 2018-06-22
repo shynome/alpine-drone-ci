@@ -10,5 +10,5 @@ RUN set -e && \
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-COPY package.json /app/
-RUN npm run install_to_global && rm -rf ~/.npm
+COPY .version /app/
+RUN cat .version && rm -rf ~/.npm
