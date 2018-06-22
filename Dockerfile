@@ -10,5 +10,5 @@ RUN set -e && \
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-COPY .package_name /app/
-RUN npm i -g $(cat .package_name) && deploy -v  && rm -rf ~/.npm
+COPY package.json /root/.npm/
+RUN npm i -g @shynome/alpine-drone-ci && rm -rf ~/.npm

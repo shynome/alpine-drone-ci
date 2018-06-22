@@ -18,7 +18,7 @@
     "docker": "docker run --rm -ti $npm_package_config_docker_name:dev sh",
     "preversion": "npm t",
     "postversion": "git push --follow-tags",
-    "set_docker_meta": "echo \"$npm_package_version,latest\">.tags && echo \"$npm_package_name:$npm_package_version\">.package_name"
+    "set_docker_meta": "echo \"$npm_package_version,latest\">.tags"
   },
   "repository": {
     "type": "git",
