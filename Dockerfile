@@ -10,5 +10,5 @@ RUN set -e && \
 WORKDIR /app
 CMD [ "deploy", "-h" ]
 
-COPY .version /app/
-RUN cat .version && rm -rf ~/.npm
+COPY .package_name /app/
+RUN npm i -g $(cat .package_name) && deploy -v  && rm -rf ~/.npm

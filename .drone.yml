@@ -22,7 +22,7 @@ pipeline:
       # event: tag
       branch: master
     commands:
-      - npm run set_docker_publish_tags
+      - npm run set_docker_meta
     
   dokcer_publish:
     when:
