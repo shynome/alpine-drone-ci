@@ -2,6 +2,14 @@ branch: [ master, dev ]
 
 pipeline:
 
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - /drone/docker
+    volumes:
+      - /tmp/cache:/cache
+
   npm_publish:
     when:
       event: tag
@@ -32,3 +40,11 @@ pipeline:
     dockerfile: dev.Dockerfile
     repo: shynome/alpine-drone-ci
     tags: [ dev ]
+  
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - /drone/docker
+    volumes:
+      - /tmp/cache:/cache
