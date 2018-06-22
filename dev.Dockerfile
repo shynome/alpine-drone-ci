@@ -12,3 +12,4 @@ RUN npm link . && rm -rf ~/.npm
 
 WORKDIR /app
 CMD [ "deploy", "-h" ]
+
