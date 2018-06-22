@@ -19,15 +19,13 @@ pipeline:
   set_docker_publish_tags:
     image: node:carbon-alpine
     when:
-      # event: tag
-      branch: master
+      event: tag
     commands:
       - npm run set_docker_meta
     
   dokcer_publish:
     when:
-      # event: tag
-      branch: master
+      event: tag
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
