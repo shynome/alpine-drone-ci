@@ -5,10 +5,8 @@ pipeline:
   restore-cache:
     image: drillster/drone-volume-cache
     restore: true
-    mount:
-      - /drone/docker
-    volumes:
-      - /tmp/cache:/cache
+    mount: [ '/drone/docker' ]
+    volumes: [ '/tmp/cache:/cache' ]
 
   npm_publish:
     when:
@@ -46,8 +44,6 @@ pipeline:
   rebuild-cache:
     image: drillster/drone-volume-cache
     rebuild: true
-    mount:
-      - /drone/docker
-    volumes:
-      - /tmp/cache:/cache
+    mount: [ '/drone/docker' ]
+    volumes: [ '/tmp/cache:/cache' ]
 
