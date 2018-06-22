@@ -31,6 +31,7 @@ pipeline:
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
+    storage_path: /drone/docker
   
   dev_docker_publish:
     when:
@@ -40,6 +41,7 @@ pipeline:
     dockerfile: dev.Dockerfile
     repo: shynome/alpine-drone-ci
     tags: [ dev ]
+    storage_path: /drone/docker
   
   rebuild-cache:
     image: drillster/drone-volume-cache
