@@ -5,7 +5,7 @@ RUN adduser -s /bin/sh -D git
 
 RUN set -e && \
   # sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
-  apk add --no-cache openssh git nodejs curl docker
+  apk add --no-cache openssh git nodejs curl
 
 FROM alpine
 COPY --from=base / /
