@@ -13,10 +13,8 @@ pipeline:
     image: shynome/alpine-drone-ci
     volume:
       - ssh:/root/.ssh
-    environment:
-      image: shynome/nginx-alpine:latest
     commands:
-      - deploy image test-host m_server
+      - deploy docker to test-host m_server shynome/nginx-alpine:$DRONE_COMMIT_SHA
 ```
 
 ### git 差异部署
