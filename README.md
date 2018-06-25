@@ -1,22 +1,6 @@
 
 # Useage Case
 
-### docker image deploy
-
-#### 
-```sh
-deploy image [host] [server] [image]
-```
-```yaml
-pipeline:
-  build:
-    image: shynome/alpine-drone-ci
-    volume:
-      - ssh:/root/.ssh
-    commands:
-      - deploy docker to test-host m_server shynome/nginx-alpine:$DRONE_COMMIT_SHA
-```
-
 ### git 差异部署
 
 #### build
@@ -24,8 +8,7 @@ pipeline:
 pipeline:
   build:
     image: shynome/alpine-drone-ci
-    volume:
-      - ssh:/root/.ssh
+    volume: [ 'ssh:/root/.ssh' ]
     environment:
       host: core_host
     commands:
@@ -34,10 +17,21 @@ pipeline:
 pipeline:
   deploy_to_host1:
     image: shynome/alpine-drone-ci
-    volume:
-      - ssh:/root/.ssh
-    commands:
-      - deploy to $host
+    volume: [ 'ssh:/root/.ssh' ]
+    deploy: to $host
+```
+
+### docker image deploy
+
+#### 
+```sh
+deploy image [host] [server] [image]
+```
+```yaml
+pipeline:
+  deploy:
+    image: shynome/alpine-drone-ci
+    deploy: docker to test-host m_server shynome/nginx-alpine:$DRONE_COMMIT_SHA
 ```
 
 # Api
@@ -55,8 +49,7 @@ pipeline:
   report:
     image: shynome/alpine-drone-ci
     secrets: [ report_hook ]
-    commands:
-    - deploy report -a
+    deploy: report -a
 ```
 
 ### command useage
