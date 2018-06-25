@@ -1,7 +1,7 @@
 FROM node:carbon-alpine
 
 RUN set -e && \
-  # sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+  sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
   apk add --no-cache openssh git curl
 
 WORKDIR /deploy
@@ -12,5 +12,5 @@ COPY . /deploy
 RUN npm link . 
 
 WORKDIR /app
-CMD [ "deploy", "$PLUGIN_ACTION" ]
+CMD [ "deploy", "plugin" ]
 
