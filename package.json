@@ -7,7 +7,8 @@
     "deploy": "lib/deploy"
   },
   "files": [
-    "lib"
+    "lib",
+    "!*.spec.js"
   ],
   "config": {
     "docker_name": "shynome/alpine-drone-ci"
