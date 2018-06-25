@@ -14,7 +14,7 @@
     "docker_name": "shynome/alpine-drone-ci"
   },
   "scripts": {
-    "test": "exit 0",
+    "test": "mocha lib/**/*.spec.js",
     "predocker": "docker build . -f dev.Dockerfile -t $npm_package_config_docker_name:dev",
     "docker": "docker run --rm -ti $npm_package_config_docker_name:dev sh",
     "preversion": "npm t",
