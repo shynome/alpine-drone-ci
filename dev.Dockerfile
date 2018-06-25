@@ -12,5 +12,5 @@ COPY . /deploy
 RUN npm link . 
 
 WORKDIR /app
-CMD [ "deploy", "-h" ]
+CMD [ "deploy", "$PLUGIN_ACTION" ]
 

@@ -5,7 +5,7 @@ RUN set -e && \
   apk add --no-cache openssh git curl
 
 WORKDIR /app
-CMD [ "deploy", "-h" ]
+CMD [ "deploy", "$PLUGIN_ACTION" ]
 
 COPY package.json /root/.npm/
 RUN npm i -g @shynome/alpine-drone-ci && rm -rf ~/.npm
