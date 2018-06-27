@@ -1,60 +1,20 @@
+# 文档
 
-# Useage Case
+## deploy sample
 
-### git 差异部署
+- [git sample .drone.yml]('./docs/drone-deploy-sample/git.yml')
 
-#### build
-```yaml
-pipeline:
-  build:
-    image: shynome/alpine-drone-ci
-    volume: [ 'ssh:/root/.ssh' ]
-    environment:
-      host: core_host
-    commands:
-      - deploy set deploy_dir /deploy_dir 
-      - deploy build git
-pipeline:
-  deploy_to_host1:
-    image: shynome/alpine-drone-ci
-    volume: [ 'ssh:/root/.ssh' ]
-    deploy: to $host
-```
+- [docker sample .drone.yml]('./docs/drone-deploy-sample/docker.yml')
 
-### docker image deploy
+- [node sample .drone.yml]('./docs/drone-deploy-sample/node.yml')
 
-#### 
-```sh
-deploy image [host] [server] [image]
-```
-```yaml
-pipeline:
-  deploy:
-    image: shynome/alpine-drone-ci
-    deploy: docker to test-host m_server shynome/nginx-alpine:$DRONE_COMMIT_SHA
-```
-
-# Api
-
-## `deploy report` 报告构建结果 
-
-支持的 `web_hook`
-- 钉钉聊天机器人
-
-### usage in drone
-
-at first add `report_hook` secret
-```yml
-pipeline:
-  report:
-    image: shynome/alpine-drone-ci
-    secrets: [ report_hook ]
-    deploy: report -a
-```
-
-### command useage
+## 更多帮助查看
 
 ```sh
-# deploy report --always [report_hook_url]
-deploy report -a https://oapi.dingtalk.com/robot/send?access_token=${your_token}
+npm i -g @shynome/alpine-drone-ci
+deploy -h
 ```
+
+## 反馈
+
+有问题的话的 `issue` 提下
