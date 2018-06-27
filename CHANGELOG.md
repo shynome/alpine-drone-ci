@@ -4,7 +4,7 @@
 
 ### ADD
 
-- `docker ssh set` 将环境变量中的 `ssh_conf` 设置到 '~/.ssh/config` , `ssh_key` 设置到 `~/.ssh/id_rsa` 中
+- `docker ssh set` 将环境变量中的 `ssh_conf` 设置到 `~/.ssh/config` , `ssh_key` 设置到 `~/.ssh/id_rsa` 中
 
 ### CHANGE
 
