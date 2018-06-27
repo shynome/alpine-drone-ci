@@ -1,0 +1,71 @@
+branches: [ dev, master ]
+
+ssh_conf: &ssh_conf
+  image: shynome/alpine-drone-ci
+  # 需要在 drone 对应项目的 secret 中设置 
+  # 推荐一个项目一个密钥, 避免登录到其他项目的服务器
+  secrets: [ ssh_key ]
+  ssh_conf: |
+    Host *
+      User root
+      StrictHostKeyChecking no
+    # 生产环境使用 docker 镜像部署
+    Host production_stack_manger_host
+      Host 5.5.5.5
+    # 开发环境使用 volume 挂载前台文件
+    Host development_host
+      Host 6.6.6.6
+
+pipeline:
+
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount: [ './node_modules', '/drone/docker' ]
+    volumes: [ '/tmp/cache:/cache' ]
+
+  build:
+    image: shynome/alpine-drone-ci
+    # 会和上次 build 的 commit_sha 对比 package.json 中的 deps 和 devDeps 依赖是否有变更, 如果有则执行 npm install
+    # 如果 install cmd 需要有其他选项的话, 可在 --isntall-cmd 选项中设置. 例:
+    # deploy: build node --install-cmd='npm i --ignore-scripts'
+    deploy: build node
+  
+  publish:
+    image: plugins/docker
+    when: { branch: master }
+    secrets: [ docker_username, docker_password ]
+    # 镜像名
+    repo: shynome/alpine-drone-ci-web-test
+    # 使用 DRONE_COMMIT_SHA 标签, 可以快速回退镜像
+    tags: [ '${DRONE_COMMIT_SHA}', latest ]
+    # 默认是 docker 官方仓库, 大部分时候要改成私有仓库
+    registry: https://index.docker.io/v1/
+    # 国内镜像加速
+    mirror: https://registry.docker-cn.com
+    # dockerfile path
+    dockerfile: docker/Dockerfile
+    # 缓存镜像构建缓存
+    storage_path: /drone/docker
+
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount: [ './node_modules', '/drone/docker' ]
+    volumes: [ '/tmp/cache:/cache' ]
+
+  deploy_dev: &deploy_dev
+    <<: *ssh_conf
+    when: { branch: dev }
+    # 将 build 打包出来的压缩包 build_pack_file.tgz 传输到目标服务器, 解压到部署目录 env:deploy_dir
+    deploy_dir: /mount/to/docker/container/volume/dir
+    deploy: to development_host
+  
+  deploy_master: &deploy_master
+    <<: *ssh_conf
+    when: { branch: master }
+    deploy: docker production_stack_manger_host  m_web registry.docker.host/shynome/alpine-drone-ci-web-test:$DRONE_COMMIT_SHA
+
+  
+  
+  
