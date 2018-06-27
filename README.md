@@ -25,6 +25,4 @@ deploy -h
 
 因为依赖的 `shelljs` 在 windows 下不支持中文输出, 所以在 windows 下中文会乱码
 
-## 反馈
 
-有问题的话的 `issue` 提下
