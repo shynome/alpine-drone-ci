@@ -2,11 +2,11 @@
 
 ## deploy sample
 
-- [git sample .drone.yml]('./docs/drone-deploy-sample/git.yml')
+- [git sample .drone.yml](./docs/drone-deploy-sample/git.yml)
 
-- [docker sample .drone.yml]('./docs/drone-deploy-sample/docker.yml')
+- [docker sample .drone.yml](./docs/drone-deploy-sample/docker.yml)
 
-- [node sample .drone.yml]('./docs/drone-deploy-sample/node.yml')
+- [node sample .drone.yml](./docs/drone-deploy-sample/node.yml)
 
 ## 更多帮助查看
 
