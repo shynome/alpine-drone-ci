@@ -1,12 +1,19 @@
-# 文档
 
-## deploy sample
+## 介绍
 
-- [git sample .drone.yml](./docs/drone-deploy-sample/git.yml)
+drone 的部署脚本写的太多, 想简化下就有了这个.
+支持的部署有下面这几个
 
-- [docker sample .drone.yml](./docs/drone-deploy-sample/docker.yml)
+- [git sample .drone.yml](./docs/drone-deploy-sample/git.yml)    
+  git 差异文件部署, 适用语言: php
 
-- [node sample .drone.yml](./docs/drone-deploy-sample/node.yml)
+- [docker sample .drone.yml](./docs/drone-deploy-sample/docker.yml)    
+  docker 部署, 需要编译打包的都可以用这个, 缺点是慢
+
+- [node sample .drone.yml](./docs/drone-deploy-sample/node.yml)    
+  node 前台开发的部署示例, 感觉不是太好
+  
+欢迎吐槽
 
 ## 更多帮助查看
 
@@ -14,6 +21,8 @@
 npm i -g @shynome/alpine-drone-ci
 deploy -h
 ```
+
+因为依赖的 `shelljs` 在 windows 下不支持中文输出, 所以在 windows 下中文会乱码
 
 ## 反馈
 
