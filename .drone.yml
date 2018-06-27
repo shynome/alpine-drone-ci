@@ -43,3 +43,8 @@ pipeline:
     mount: [ '/drone/docker' ]
     volumes: [ '/tmp/cache:/cache' ]
 
+  report:
+    image: shynome/alpine-drone-ci
+    when: { status: [ success, failure ] }
+    secrets: [ report_hook ]
+    deploy: report -a
