@@ -1,0 +1,61 @@
+branches: [ dev, master ]
+
+ssh_conf: &ssh_conf
+  image: shynome/alpine-drone-ci
+  # 需要在 drone 对应项目的 secret 中设置 
+  # 推荐一个项目一个密钥, 避免登录到其他项目的服务器
+  secrets: [ ssh_key ]
+  ssh_conf: |
+    Host *
+      User root
+      StrictHostKeyChecking no
+    Host production_host1
+      Host 5.5.5.5
+    Host production_host2
+      Host 5.5.5.6
+    Host development_host
+      Host 6.6.6.6
+
+pipeline:
+  
+  preset_dev:
+    when: { branch: dev }
+    image: shynome/alpine-drone-ci
+    commands:
+    # 设置服务器的文件部署目录
+    # 每台服务器上都要有这个部署目录
+    - deploy set deploy_dir /work/development_host_deploy_dir
+    # 和上个选项配合使用获取上次的提交的 commit_sha
+    - deploy set host development_host
+  preset_master:
+    when: { branch: master }
+    image: shynome/alpine-drone-ci
+    commands:
+    - deploy set deploy_dir /work/production_host_deploy_dir
+    - deploy set host production_host1
+
+  build:
+    <<: *ssh_conf
+    # 和 host 上的 deploy_dir 中 .commit.ht 记录的 commit_sha 进行对比得到差异新增变化文件打包, 删除的文件记录在 .env 里的 deleted_files 变量
+    deploy: build git
+
+  deploy_dev: &deploy_dev
+    <<: *ssh_conf
+    when: { branch: dev }
+    group: deploy
+    # 将 build 打包出来的压缩包 build_pack_file.tgz 传输到目标服务器, 解压到部署目录 env:deploy_dir
+    # 根据 env:deleted_files 删除远程服务器文件
+    # 将当前 commit_sha 输出到目标服务器的 env:deploy_dir/.commit.ht 文件中, 以便下次 build 的时候进行差异文件对比
+    deploy: to development_host
+  
+  deploy_master1: &deploy_master
+    <<: *ssh_conf
+    when: { branch: master }
+    # 使用 group 属性同时运行多个部署步骤
+    group: deploy
+    deploy: to production_host1
+  deploy_master2:
+    <<: *deploy_master
+    deploy: to production_host2
+  
+  
