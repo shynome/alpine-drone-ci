@@ -1,4 +1,4 @@
-branch: [ master, dev ]
+branches: [ dev ]
 
 pipeline:
 
@@ -9,8 +9,7 @@ pipeline:
     volumes: [ '/tmp/cache:/cache' ]
 
   npm_publish:
-    when:
-      event: tag
+    when: { event: tag }
     image: plugins/npm
     username: shynome
     email: shynome@gmail.com
@@ -18,22 +17,19 @@ pipeline:
   
   set_docker_publish_tags:
     image: node:carbon-alpine
-    when:
-      event: tag
+    when: { event: tag }
     commands:
       - npm run set_docker_meta
     
   dokcer_publish:
-    when:
-      event: tag
+    when: { event: tag }
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     repo: shynome/alpine-drone-ci
     storage_path: /drone/docker
   
   dev_docker_publish:
-    when:
-      branch: dev
+    when: { branch: dev }
     image: plugins/docker
     secrets: [ docker_username, docker_password ]
     dockerfile: dev.Dockerfile
