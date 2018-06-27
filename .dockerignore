@@ -3,4 +3,5 @@ node_modules
 .drone.yml
 .env
 *Dockerfile
-README.md
+*.md
+docs
