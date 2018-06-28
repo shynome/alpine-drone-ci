@@ -16,6 +16,13 @@ drone 的部署脚本写的太多, 想简化下就有了这个.
   
 欢迎吐槽
 
+## 发布状态查看
+
+没有找到 `drone ci` 的过滤方法 目前展示的是所有的构建状态
+
+<https://drone.wsl.fun/shynome/alpine-drone-ci>
+
+
 ## 更多帮助查看
 
 ```sh
