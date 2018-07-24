@@ -67,4 +67,15 @@ declare namespace Aliyun {
      */
     TaskId?: string
   }
+  interface DescribeRefreshTasksResponse {
+    TaskItem: {
+      TaskId: string
+      ObjectPath: string
+    }
+    PageSize: number
+    PageNumber: number
+    TotalCount: number
+    RequestId: string
+    Tasks: DescribeRefreshTasksResponse['TaskItem'][]
+  }
 }
