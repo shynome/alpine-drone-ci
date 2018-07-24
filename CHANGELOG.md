@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 1.5.0
+
+### CHANGE
+
+- `deploy report` 去除了 `-a` 选项, 这个选项应该在 `when` 里控制.
+  ```yaml
+  when: { status: [ success, failure ] }
+  ``` 
+
 ## 1.4.3
 
 ### FIX
