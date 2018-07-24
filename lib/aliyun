@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+const { util: { env } } = require('./')
+
+require('./').init('./aliyun_cmd')
+.option('AccessKeyId',{
+  required: true, 
+  default: env.iget('AccessKeyId'),
+  desc: 'aliyun AccessKeyId',
+})
+.option('AccessKeySecret',{ 
+  required: true,
+  default: env.iget('AccessKeySecret'),
+  desc: 'aliyun AccessKeySecret',
+  alias: 'secret',
+})
+.argv
