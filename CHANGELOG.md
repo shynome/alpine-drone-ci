@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.6.0
+
+### ADD
+
+- `aliyun cdn RefreshObjectCaches [origin] -f [files]`
+  - `aliyun cdn RefreshObjectCaches [origin] -f [files]` 刷新指定文件的 cdn 缓存
+  - `aliyun cdn RefreshObjectCaches [origin]` 刷新指定网址目录的 cdn 缓存
+
 ## 1.5.0
 
 ### CHANGE
