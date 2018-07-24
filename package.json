@@ -4,7 +4,8 @@
   "description": "alpine drone ci deploy tools",
   "main": "lib/index.js",
   "bin": {
-    "deploy": "lib/deploy"
+    "deploy": "lib/deploy",
+    "aliyun": "lib/aliyun"
   },
   "files": [
     "lib",
